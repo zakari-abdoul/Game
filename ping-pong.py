@@ -37,8 +37,7 @@ Balle.goto(0, 0)
 Balle.dx = 0.50
 Balle.dy = 0.50
 #  Score
-score_a = 0
-score_b = 0
+
 
 # Pen
 pen = turtle.Turtle()
@@ -88,50 +87,58 @@ wn.onkeypress(paddle_b_down, "m")
 
 
 # Main game loop
-while True:
-    wn.update()
-    Balle.setx(Balle.xcor() + Balle.dx)
-    Balle.sety(Balle.ycor() + Balle.dy)
-    pen
+def main():
+    score_a = 0
+    score_b = 0
+    while True:
+        wn.update()
+        Balle.setx(Balle.xcor() + Balle.dx)
+        Balle.sety(Balle.ycor() + Balle.dy)
+        pen
 
-    # Top Border
-    if Balle.ycor() > 290:
-        Balle.sety(290)
-        Balle.dy = Balle.dy * -1
-        os.system("aply sound.extention")
+        # Top Border
+        if Balle.ycor() > 290:
+            Balle.sety(290)
+            Balle.dy = Balle.dy * -1
+            os.system("aply sound.extention")
 
-    if Balle.ycor() < -290:
-        Balle.sety(-290)
-        Balle.dy = Balle.dy * -1
-        os.system("aply sound.extention")
+        if Balle.ycor() < -290:
+            Balle.sety(-290)
+            Balle.dy = Balle.dy * -1
+            os.system("aply sound.extention")
 
-    # side border
-    if Balle.xcor() > 390:
-        Balle.goto(0,0)
-        Balle.dx = Balle.dy * -1
-        score_a += 1
-        pen.clear()
-        pen.write("Player A:{}  Player B:{} ".format(score_a,score_b),align="center", font=("Courier", 20, "normal"))
+        # side border
+        if Balle.xcor() > 390:
+            Balle.goto(0,0)
+            Balle.dx = Balle.dy * -1
+            score_a += 1
+            pen.clear()
+            pen.write("Player A:{}  Player B:{} ".format(score_a,score_b),align="center", font=("Courier", 20, "normal"))
 
 
-    if Balle.xcor() < -390:
-        Balle.goto(0,0)
-        Balle.dx = Balle.dy * -1
-        score_b += 1
-        pen.clear()
-        pen.write("Player A:{}  Player B:{} ".format(score_a,score_b),align="center", font=("Courier", 20, "normal"))
+        if Balle.xcor() < -390:
+            Balle.goto(0,0)
+            Balle.dx = Balle.dy * -1
+            score_b += 1
+            pen.clear()
+            pen.write("Player A:{}  Player B:{} ".format(score_a,score_b),align="center", font=("Courier", 20, "normal"))
 
-    
-    # the ball hit the corner, his position is set to zero
-    # if (Balle.xcor() > 340 and Balle.xcor() < 340):
-    #     Balle.setx(0)
-    #     Balle.dx *= -1
-    # the balle hit the paddle
+        
+        # the ball hit the corner, his position is set to zero
+        # if (Balle.xcor() > 340 and Balle.xcor() < 340):
+        #     Balle.setx(0)
+        #     Balle.dx *= -1
+        # the balle hit the paddle
 
-    if (Balle.xcor() > 340 and Balle.xcor() < 350) and (Balle.ycor() < paddle_b.ycor() + 40 and Balle.ycor() > paddle_b.ycor() -40):
-        Balle.setx(340)
-        Balle.dx *= -1
+        if (Balle.xcor() > 340 and Balle.xcor() < 350) and (Balle.ycor() < paddle_b.ycor() + 40 and Balle.ycor() > paddle_b.ycor() -40):
+            Balle.setx(340)
+            Balle.dx *= -1
 
-    if (Balle.xcor() < -340 and Balle.xcor() > -350) and (Balle.ycor() < paddle_a.ycor() + 40 and Balle.ycor() > paddle_a.ycor() -40):
-        Balle.setx(-340)
-        Balle.dx *= -1
+        if (Balle.xcor() < -340 and Balle.xcor() > -350) and (Balle.ycor() < paddle_a.ycor() + 40 and Balle.ycor() > paddle_a.ycor() -40):
+            Balle.setx(-340)
+            Balle.dx *= -1
+
+
+
+if __name__ == "__main__":
+    main()
